@@ -70,6 +70,7 @@ export type CellValue = string | number | boolean | string[] | FileItem[] | null
 export interface Row {
   id: string;
   icon: string;
+  notes?: string;
   cover: string | null;
   cells: Record<string, CellValue>;
   comments: Comment[];
