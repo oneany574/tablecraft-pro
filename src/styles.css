@@ -142,3 +142,53 @@
     color: var(--color-foreground);
   }
 }
+
+/* --- Notion-like surface + tag palette ------------------------------- */
+@theme {
+  --color-nt-text: oklch(0.31 0.008 70);
+  --color-nt-muted: oklch(0.58 0.008 70);
+  --color-nt-faint: oklch(0.74 0.006 70);
+  --color-nt-line: oklch(0.925 0.003 70);
+  --color-nt-hover: oklch(0.972 0.003 70);
+  --color-nt-active: oklch(0.945 0.003 70);
+  --color-nt-surface: oklch(1 0 0);
+  --color-nt-blue: oklch(0.62 0.13 250);
+  --color-nt-blue-soft: oklch(0.93 0.04 250);
+
+  --color-tag-default-bg: oklch(0.955 0.002 70);
+  --color-tag-default-fg: oklch(0.32 0.008 70);
+  --color-tag-gray-bg: oklch(0.925 0.003 70);
+  --color-tag-gray-fg: oklch(0.42 0.008 70);
+  --color-tag-brown-bg: oklch(0.91 0.025 60);
+  --color-tag-brown-fg: oklch(0.42 0.05 55);
+  --color-tag-orange-bg: oklch(0.93 0.05 65);
+  --color-tag-orange-fg: oklch(0.52 0.13 55);
+  --color-tag-yellow-bg: oklch(0.95 0.06 95);
+  --color-tag-yellow-fg: oklch(0.53 0.1 80);
+  --color-tag-green-bg: oklch(0.93 0.05 155);
+  --color-tag-green-fg: oklch(0.47 0.09 155);
+  --color-tag-blue-bg: oklch(0.93 0.04 245);
+  --color-tag-blue-fg: oklch(0.5 0.11 250);
+  --color-tag-purple-bg: oklch(0.93 0.04 300);
+  --color-tag-purple-fg: oklch(0.5 0.13 300);
+  --color-tag-pink-bg: oklch(0.94 0.04 350);
+  --color-tag-pink-fg: oklch(0.53 0.13 355);
+  --color-tag-red-bg: oklch(0.93 0.045 25);
+  --color-tag-red-fg: oklch(0.53 0.16 27);
+}
+
+@source inline("bg-tag-{default,gray,brown,orange,yellow,green,blue,purple,pink,red}-bg text-tag-{default,gray,brown,orange,yellow,green,blue,purple,pink,red}-fg");
+
+@utility cover-1 {
+  background-image: linear-gradient(120deg, oklch(0.86 0.08 250), oklch(0.93 0.05 300));
+}
+@utility cover-2 {
+  background-image: linear-gradient(120deg, oklch(0.9 0.07 150), oklch(0.95 0.05 100));
+}
+@utility cover-3 {
+  background-image: linear-gradient(120deg, oklch(0.9 0.08 60), oklch(0.94 0.06 25));
+}
+@utility cover-4 {
+  background-image: linear-gradient(120deg, oklch(0.88 0.04 280), oklch(0.93 0.03 220));
+}
+@source inline("cover-{1,2,3,4}");
