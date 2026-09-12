@@ -43,7 +43,7 @@ export function TableView({
   const onGridKeyDown = (e: React.KeyboardEvent) => {
     const target = (e.target as HTMLElement).closest<HTMLElement>("[data-cell]");
     if (!target) return;
-    const [r, c] = (target.dataset.cell ?? "0-0").split("-").map(Number);
+    const [r = 0, c = 0] = (target.dataset["cell"] ?? "0-0").split("-").map(Number);
     const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
     if (!keys.includes(e.key)) {
       if (e.key === "Enter") {

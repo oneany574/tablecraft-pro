@@ -29,7 +29,7 @@ export function BoardView({
     { id: "", name: "No " + groupCol.name.toLowerCase(), color: "default" as const },
   ];
 
-  const titleCol = state.columns[0];
+  const titleCol = state.columns[0]!;
 
   return (
     <div className="flex gap-3 overflow-x-auto pb-6 pt-3">

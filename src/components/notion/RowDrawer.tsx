@@ -38,7 +38,7 @@ export function RowDrawer({
   }, [onClose]);
 
   if (!row) return null;
-  const titleCol = api.state.columns[0];
+  const titleCol = api.state.columns[0]!;
   const prev = rows[index - 1];
   const next = rows[index + 1];
 

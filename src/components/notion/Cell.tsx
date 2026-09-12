@@ -27,7 +27,7 @@ export function Cell({ row, col, api, variant = "table" }: CellProps) {
 
   const addOption = (name: string): string => {
     const id = uid();
-    const color = TAG_COLORS[(col.options?.length ?? 0) % TAG_COLORS.length];
+    const color = TAG_COLORS[(col.options?.length ?? 0) % TAG_COLORS.length]!;
     api.patchColumn(col.id, { options: [...(col.options ?? []), { id, name, color }] });
     return id;
   };

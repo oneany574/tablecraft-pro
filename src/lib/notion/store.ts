@@ -300,8 +300,8 @@ export function useDatabase() {
     }
   }, [state, hydrated]);
 
-  const view = useMemo(
-    () => state.views.find((v) => v.id === state.activeViewId) ?? state.views[0],
+  const view = useMemo<ViewConfig>(
+    () => state.views.find((v) => v.id === state.activeViewId) ?? state.views[0]!,
     [state],
   );
 

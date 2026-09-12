@@ -227,7 +227,7 @@ function OptionsPane({
               {
                 id: uid(),
                 name: newName.trim(),
-                color: TAG_COLORS[options.length % TAG_COLORS.length],
+                color: TAG_COLORS[options.length % TAG_COLORS.length]!,
               },
             ]);
             setNewName("");
