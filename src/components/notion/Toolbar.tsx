@@ -209,7 +209,7 @@ export function Toolbar({ api }: { api: DatabaseApi }) {
                   ...view.filters,
                   {
                     id: uid(),
-                    columnId: api.state.columns[0].id,
+                    columnId: api.state.columns[0]!.id,
                     operator: "contains",
                     value: "",
                   },
@@ -276,7 +276,7 @@ export function Toolbar({ api }: { api: DatabaseApi }) {
               api.patchView({
                 sorts: [
                   ...view.sorts,
-                  { id: uid(), columnId: api.state.columns[0].id, direction: "asc" },
+                  { id: uid(), columnId: api.state.columns[0]!.id, direction: "asc" },
                 ],
               })
             }
@@ -314,7 +314,7 @@ export function Toolbar({ api }: { api: DatabaseApi }) {
                 setOpen(null);
               }}
             >
-              {h[0].toUpperCase() + h.slice(1)}
+              {h[0]!.toUpperCase() + h.slice(1)}
             </MenuItem>
           ))}
         </Pop>

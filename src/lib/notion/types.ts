@@ -46,10 +46,10 @@ export interface Column {
   id: string;
   name: string;
   type: ColumnType;
-  options?: SelectOption[];
-  formula?: string;
+  options?: SelectOption[] | undefined;
+  formula?: string | undefined;
   width: number;
-  hidden?: boolean;
+  hidden?: boolean | undefined;
 }
 
 export interface FileItem {
@@ -70,9 +70,9 @@ export type CellValue = string | number | boolean | string[] | FileItem[] | null
 export interface Row {
   id: string;
   icon: string;
-  notes?: string;
+  notes?: string | undefined;
   cover: string | null;
-  cells: Record<string, CellValue>;
+  cells: Record<string, CellValue | undefined>;
   comments: Comment[];
 }
 

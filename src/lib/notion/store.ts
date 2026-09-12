@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type {
+  SelectOption,
   CellValue,
   Column,
   ColumnType,
@@ -331,7 +332,7 @@ export function useDatabase() {
     (preset?: Record<string, CellValue>) => {
       const id = uid();
       setState((s) => {
-        const cells: Record<string, CellValue> = {};
+        const cells: Record<string, CellValue | undefined> = {};
         s.columns.forEach((c) => (cells[c.id] = emptyValue(c.type)));
         return {
           ...s,
@@ -351,10 +352,10 @@ export function useDatabase() {
       const i = s.rows.findIndex((r) => r.id === rowId);
       if (i < 0) return s;
       const copy: Row = {
-        ...s.rows[i],
+        ...s.rows[i]!,
         id: uid(),
         comments: [],
-        cells: { ...s.rows[i].cells },
+        cells: { ...s.rows[i]!.cells },
       };
       const rows = [...s.rows];
       rows.splice(i + 1, 0, copy);
@@ -373,7 +374,7 @@ export function useDatabase() {
       if (from < 0 || to < 0 || from === to) return s;
       const rows = [...s.rows];
       const [moved] = rows.splice(from, 1);
-      rows.splice(to, 0, moved);
+      rows.splice(to, 0, moved!);
       return { ...s, rows };
     });
   }, []);
@@ -385,7 +386,7 @@ export function useDatabase() {
       if (from < 0 || to < 0 || from === to) return s;
       const columns = [...s.columns];
       const [moved] = columns.splice(from, 1);
-      columns.splice(to, 0, moved);
+      columns.splice(to, 0, moved!);
       return { ...s, columns };
     });
   }, []);
@@ -408,7 +409,9 @@ export function useDatabase() {
           name: `${type === "text" ? "Property" : type} ${s.columns.length + 1}`,
           type,
           width: 160,
-          options: type === "select" || type === "multi_select" || type === "status" ? [] : undefined,
+          ...(type === "select" || type === "multi_select" || type === "status"
+            ? { options: [] as SelectOption[] }
+            : {}),
         },
       ],
       rows: s.rows.map((r) => ({ ...r, cells: { ...r.cells, [id]: emptyValue(type) } })),
@@ -420,7 +423,7 @@ export function useDatabase() {
     setState((s) => {
       const i = s.columns.findIndex((c) => c.id === colId);
       if (i < 0) return s;
-      const src = s.columns[i];
+      const src = s.columns[i]!;
       const id = "c_" + uid();
       const columns = [...s.columns];
       columns.splice(i + 1, 0, { ...src, id, name: `${src.name} copy` });
